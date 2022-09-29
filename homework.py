@@ -4,7 +4,7 @@ coeff_calorie_1 = 18
 coeff_calorie_2 = 20
 cef_call_1 = 0.035
 cef_call_2 = 0.029
-
+D_IN_M = 60
 
 class InfoMessage:
     """Информационное сообщение о тренировке."""
@@ -66,7 +66,8 @@ class Running(Training):
     def get_spent_calories(self):
         spent_calories = ((coeff_calorie_1 * Training.get_mean_speed(self)
                            - coeff_calorie_2)
-                          * self.weight / self.M_IN_KM * self.duration)
+                          * self.weight / self.M_IN_KM * self.duration
+                          * D_IN_M)
         return spent_calories
 
 
