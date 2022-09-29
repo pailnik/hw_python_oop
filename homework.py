@@ -41,7 +41,7 @@ class Training:
         self.weight = weight
 
     def get_distance(self):
-        dist = self.action * self.LEN_STEP / M_IN_KM  # Dopisat vubor LEN
+        dist = self.action * self.LEN_STEP / self.M_IN_KM  # Dopisat vubor LEN
         return dist
 
     def get_mean_speed(self):  # Значение средней скорости
@@ -103,7 +103,7 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self):
-        average_speed = (self.length_pool * self.count_pool / M_IN_KM
+        average_speed = (self.length_pool * self.count_pool / self.M_IN_KM
                          / self.duration)
         return average_speed
 
