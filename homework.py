@@ -1,4 +1,5 @@
 from typing import Dict, Type
+
 M_IN_KM = 1000  # const
 coeff_calorie_1 = 18
 coeff_calorie_2 = 20
@@ -62,6 +63,7 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
+
     def get_spent_calories(self):
         spent_calories = ((coeff_calorie_1 * Training.get_mean_speed(self)
                            - coeff_calorie_2)
@@ -71,17 +73,18 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
+
     def __init__(self, action, duration, weight, height):
         super().__init__(action, duration, weight)
         self.height = height
 
     def get_spent_calories(self):
         minute = 60
-        spent_calories = ((cef_call_1 * self.weight +
-                         (Training.get_mean_speed(self)
-                         ** 2 // self.height) * cef_call_2 * self.weight)
-                         * self.weight
-                         * self.duration * minute  # v minutah
+        spent_calories = ((cef_call_1 * self.weight
+                           + (Training.get_mean_speed(self)
+                              ** 2 // self.height) * cef_call_2 * self.weight)
+                          * self.weight
+                          * self.duration * minute  # v minutah
                           )
         return spent_calories
 
@@ -138,4 +141,3 @@ if __name__ == '__main__':
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
-
