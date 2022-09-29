@@ -1,3 +1,11 @@
+from typing import Dict, Type
+M_IN_KM = 1000  # const
+coeff_calorie_1 = 18
+coeff_calorie_2 = 20
+cef_call_1 = 0.035
+cef_call_2 = 0.029
+
+
 class InfoMessage:
     """Информационное сообщение о тренировке."""
 
@@ -24,7 +32,6 @@ class InfoMessage:
 
 class Training:
     """Базовый класс тренировки."""
-
     LEN_STEP = 0.65
 
     def __init__(self, action, duration, weight):
@@ -52,7 +59,15 @@ class Training:
 
 
 class Running(Training):
-    """Тренировка: бег."""
+    """def __init__(self, action, duration, weight, average_speed):
+        super().__init__(action, duration, weight)
+        self.average_speed = Training.get_mean_speed(self, duration)
+
+    def get_spent_calories(self, weight):
+        spent_calories = ((coeff_calorie_1 * self.average_speed - coeff_calorie_2)
+                          * self.weight / M_IN_KM * self.duration)
+        return spent_calories"""
+
     def get_spent_calories(self):
         spent_calories = ((coeff_calorie_1 * Training.get_mean_speed(self) - coeff_calorie_2)
                           * self.weight / M_IN_KM * self.duration)
@@ -60,7 +75,6 @@ class Running(Training):
 
 
 class SportsWalking(Training):
-    """Тренировка: спортивная ходьба."""
     def __init__(self, action, duration, weight, height):
         super().__init__(action, duration, weight)
         self.height = height
@@ -111,14 +125,14 @@ def read_package(workout: str, all_data: list) -> Training:
     return training_type[workout](*all_data)
 
 
-def main(training: Training) -> None:
+def main(user_training: Training) -> None:
     """Главная функция."""
-    info = training.show_training_info()
+    info = user_training.show_training_info()
     print(info.get_message())
 
 
 if __name__ == '__main__':
-    packages = [
+    packages = [        
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180]),
@@ -127,4 +141,3 @@ if __name__ == '__main__':
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
-
