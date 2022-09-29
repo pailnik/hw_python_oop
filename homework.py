@@ -6,6 +6,7 @@ cef_call_1 = 0.035
 cef_call_2 = 0.029
 D_IN_M = 60
 
+
 class InfoMessage:
     """Информационное сообщение о тренировке."""
 
