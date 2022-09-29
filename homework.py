@@ -1,3 +1,11 @@
+from typing import Dict, Type
+M_IN_KM = 1000  # const
+coeff_calorie_1 = 18
+coeff_calorie_2 = 20
+cef_call_1 = 0.035
+cef_call_2 = 0.029
+
+
 class InfoMessage:
     """Информационное сообщение о тренировке."""
 
