@@ -1,6 +1,5 @@
 from typing import Dict, Type
 
-M_IN_KM = 1000  # const
 coeff_calorie_1 = 18
 coeff_calorie_2 = 20
 cef_call_1 = 0.035
@@ -23,7 +22,7 @@ class InfoMessage:
         self.speed = speed
         self.calories = calories
 
-    def get_message(self):
+    def get_message(self) -> str:
         return (f'Тип тренировки: {self.training_type}; '
                 f'Длительность: {self.duration:.3f} ч.; '
                 f'Дистанция: {self.distance:.3f} км; '
@@ -33,7 +32,7 @@ class InfoMessage:
 
 class Training:
     """Базовый класс тренировки."""
-
+    M_IN_KM = 1000  # const
     LEN_STEP = 0.65
 
     def __init__(self, action, duration, weight):
@@ -67,7 +66,7 @@ class Running(Training):
     def get_spent_calories(self):
         spent_calories = ((coeff_calorie_1 * Training.get_mean_speed(self)
                            - coeff_calorie_2)
-                          * self.weight / M_IN_KM * self.duration)
+                          * self.weight / self.M_IN_KM * self.duration)
         return spent_calories
 
 
@@ -83,8 +82,7 @@ class SportsWalking(Training):
         spent_calories = ((cef_call_1 * self.weight
                            + (Training.get_mean_speed(self)
                               ** 2 // self.height) * cef_call_2 * self.weight)
-                          * self.weight
-                          * self.duration * minute  # v minutah
+                          * self.duration * minute
                           )
         return spent_calories
 
