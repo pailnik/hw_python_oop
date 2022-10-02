@@ -75,7 +75,8 @@ class SportsWalking(Training):
     def get_spent_calories(self):
         spent_calories = ((self.CEF_CLRS_1 * self.weight
                            + (self.get_mean_speed()
-                              ** 2 // self.height) * self.CEF_CLRS_2 * self.weight)
+                              ** 2 // self.height) * self.CEF_CLRS_2
+                           * self.weight)
                           * self.duration * self.D_IN_M
                           )
         return spent_calories
